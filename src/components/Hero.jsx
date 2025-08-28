@@ -19,6 +19,7 @@ export default function Hero({ id }) {
           Make Smarter Business Decisions with Zimora
         </h1>
 
+
         <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
           <button 
             onClick={() => router.push("/pricing")}
