@@ -68,7 +68,7 @@ export default function Pricing() {
   const handleEmail = () => {
     const subject = encodeURIComponent(`Interested in ${selectedPackage} package`);
     const body = message(selectedPackage);
-    window.open(`mailto:youremail@example.com?subject=${subject}&body=${body}`, "_blank");
+    window.open(`mailto:info@zimora.co.zw?subject=${subject}&body=${body}`, "_blank");
     setModalOpen(false);
   };
 
