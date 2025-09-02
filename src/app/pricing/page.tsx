@@ -23,10 +23,13 @@ const PRICING = {
   premium: 150,
 };
 
+const WHATSAPP_NUMBER = "263719426867";
+
 export default function Pricing() {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState("");
 
-  // helper to compute price based on billing cycle
   const getPrice = (base: number) => {
     if (billingCycle === "monthly") return `$${base}/mo`;
     const yearly = base * 12;
@@ -34,7 +37,6 @@ export default function Pricing() {
     return `$${discounted}/yr`;
   };
 
-  // helper to compute savings text
   const getSavings = (base: number) => {
     if (billingCycle === "annual" && base > 0) {
       const yearly = base * 12;
@@ -43,6 +45,31 @@ export default function Pricing() {
       return `Save $${save} annually!`;
     }
     return null;
+  };
+
+  const message = (pkg: string) =>
+    encodeURIComponent(`Hi, I'm interested in the ${pkg} package. Please send me more details.`);
+
+  const openWhatsApp = (pkg: string) => {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message(pkg)}`, "_blank");
+    } else {
+      setSelectedPackage(pkg);
+      setModalOpen(true);
+    }
+  };
+
+  const handleWhatsApp = () => {
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message(selectedPackage)}`, "_blank");
+    setModalOpen(false);
+  };
+
+  const handleEmail = () => {
+    const subject = encodeURIComponent(`Interested in ${selectedPackage} package`);
+    const body = message(selectedPackage);
+    window.open(`mailto:youremail@example.com?subject=${subject}&body=${body}`, "_blank");
+    setModalOpen(false);
   };
 
   return (
@@ -101,11 +128,15 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-              <button className="mt-auto text-white bg-indigo-500 border-0 py-2 px-4 w-full hover:bg-indigo-600 rounded">
+              <button
+                onClick={() => openWhatsApp("Starter")}
+                className="mt-auto text-white bg-indigo-500 border-0 py-2 px-4 w-full hover:bg-indigo-600 rounded"
+              >
                 Start Free Trial
               </button>
             </div>
           </div>
+
           {/* Standard */}
           <div className="p-4 xl:w-1/4 md:w-1/2 w-full">
             <div className="h-full p-6 rounded-lg border-2 border-indigo-500 flex flex-col relative overflow-hidden">
@@ -131,7 +162,10 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-              <button className="mt-auto text-white bg-indigo-500 border-0 py-2 px-4 w-full hover:bg-indigo-600 rounded">
+              <button
+                onClick={() => openWhatsApp("Standard")}
+                className="mt-auto text-white bg-indigo-500 border-0 py-2 px-4 w-full hover:bg-indigo-600 rounded"
+              >
                 Select Standard
               </button>
             </div>
@@ -158,7 +192,10 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-              <button className="mt-auto text-white bg-indigo-700 border-0 py-2 px-4 w-full hover:bg-indigo-800 rounded">
+              <button
+                onClick={() => openWhatsApp("Premium")}
+                className="mt-auto text-white bg-indigo-700 border-0 py-2 px-4 w-full hover:bg-indigo-800 rounded"
+              >
                 Select Premium
               </button>
             </div>
@@ -188,13 +225,48 @@ export default function Pricing() {
                   <FaCheck className="text-green-500 mr-2" /> Custom Reporting & Training
                 </li>
               </ul>
-              <button className="mt-auto text-white bg-gray-700 border-0 py-2 px-4 w-full hover:bg-gray-800 rounded">
+              <button
+                onClick={() => openWhatsApp("Enterprise")}
+                className="mt-auto text-white bg-gray-700 border-0 py-2 px-4 w-full hover:bg-gray-800 rounded"
+              >
                 Contact Us
               </button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      {modalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-white rounded-lg shadow-lg w-80 p-6 text-center">
+            <h2 className="text-xl font-bold mb-4">Contact Us</h2>
+            <p className="mb-6">
+              How would you like to get in touch about the {selectedPackage} package?
+            </p>
+            <div className="flex justify-between gap-4">
+              <button
+                onClick={handleWhatsApp}
+                className="flex-1 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+              >
+                WhatsApp Web
+              </button>
+              <button
+                onClick={handleEmail}
+                className="flex-1 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+              >
+                Send Email
+              </button>
+            </div>
+            <button
+              onClick={() => setModalOpen(false)}
+              className="mt-4 text-gray-500 hover:text-gray-700"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
