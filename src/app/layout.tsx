@@ -36,6 +36,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Zimora",
     description: "Smart loyalty and rewards platform",
-    images: ["https://www.zimora.co.zw/og-image.jpg"],
+    images: ["https://www.zimora.co.zw/og-image.png"],
   },
 };
