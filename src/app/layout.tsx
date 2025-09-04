@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: "Zimora",
     images: [
       {
-        url: "https://www.zimora.co.zw/og-image.jpg", // 👈 place your custom image in /public
+        url: "https://www.zimora.co.zw/og-image.png", // 👈 place your custom image in /public
         width: 1200,
         height: 630,
         alt: "Zimora – Smart loyalty and rewards platform",
