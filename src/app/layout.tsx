@@ -1,17 +1,5 @@
 import type { Metadata } from "next";
-//import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-/*const { variable: geistSans } = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const { variable: geistMono } = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});*/
-
 
 export const metadata: Metadata = {
   title: "Zimora",
@@ -23,7 +11,7 @@ export const metadata: Metadata = {
     siteName: "Zimora",
     images: [
       {
-        url: "https://www.zimora.co.zw/og-image.png", // 👈 place your custom image in /public
+        url: "https://www.zimora.co.zw/og-image.png",
         width: 1200,
         height: 630,
         alt: "Zimora – Smart loyalty and rewards platform",
@@ -39,3 +27,16 @@ export const metadata: Metadata = {
     images: ["https://www.zimora.co.zw/og-image.png"],
   },
 };
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.svg" />
+      </head>
+      <body className="antialiased">
+        {children}
+      </body>
+    </html>
+  );
+}
