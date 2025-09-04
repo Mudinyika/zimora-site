@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     ],
     locale: "en_ZW",
     type: "website",
+    
   },
   twitter: {
     card: "summary_large_image",
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.svg" />
+        <meta property="fb:app_id" content="764811989753119" />
       </head>
       <body className="antialiased">
         {children}
