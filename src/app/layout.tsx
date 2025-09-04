@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     siteName: "Zimora",
     images: [
       {
-        url: "https://www.zimora.co.zw/og-image.png",
+        url: "https://www.zimora.co.zw/og-image-v2.png",
         width: 1200,
         height: 630,
         alt: "Zimora – Smart loyalty and rewards platform",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Zimora",
     description: "Smart loyalty and rewards platform",
-    images: ["https://www.zimora.co.zw/og-image.png"],
+    images: ["https://www.zimora.co.zw/og-image-v2.png"],
   },
 };
 
