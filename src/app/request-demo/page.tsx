@@ -40,9 +40,9 @@ export default function RequestDemoPage() {
               <path d="M12 20l6 6 10-12" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-3">We'll be in touch!</h1>
+          <h1 className="text-3xl font-bold text-white mb-3">We&apos;ll be in touch!</h1>
           <p className="text-indigo-200">
-            Thanks for your interest in Zimora Loyalty. We'll contact you within 24 hours to get your account set up.
+            Thanks for your interest in Zimora Loyalty. We&apos;ll contact you within 24 hours to get your account set up.
           </p>
         </div>
       </div>
@@ -99,7 +99,7 @@ export default function RequestDemoPage() {
           
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-1">Request Access</h2>
-            <p className="text-gray-500 text-sm">We'll set up your account within 24 hours.</p>
+            <p className="text-gray-500 text-sm">We&apos;ll set up your account within 24 hours.</p>
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -179,7 +179,7 @@ export default function RequestDemoPage() {
             </button>
 
             <p className="text-center text-xs text-gray-400">
-              No credit card required. We'll contact you to get started.
+              No credit card required. We&apos;ll contact you to get started.
             </p>
           </form>
         </div>
