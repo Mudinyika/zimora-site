@@ -1,8 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { FaStore, FaBolt, FaChartBar } from "react-icons/fa";
 
 export default function RequestDemoPage() {
+  const router = useRouter();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
@@ -12,6 +14,15 @@ export default function RequestDemoPage() {
     branches: "",
     email: "",
   });
+
+  useEffect(() => {
+    if (submitted) {
+      const timer = setTimeout(() => {
+        router.push("/");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [submitted, router]);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     setForm({ ...form, [e.target.name]: e.target.value });
