@@ -22,7 +22,7 @@ export default function Hero({ id }) {
 
         <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
           <button 
-            onClick={() => router.push("/pricing")}
+            onClick={() => router.push("/request-demo")}
             className="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg transition"
           >
             Try for Free
