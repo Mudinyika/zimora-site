@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { FaStore, FaBolt, FaChartBar } from "react-icons/fa";
 
 export default function RequestDemoPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -76,20 +77,20 @@ export default function RequestDemoPage() {
 
         <div className="flex flex-col gap-5">
           {[
-            { icon: "🏪", title: "Single or multi-branch", desc: "Works for one shop or a full franchise network" },
-            { icon: "⚡", title: "Live in 24 hours", desc: "We set up your account and send you credentials" },
-            { icon: "📊", title: "Real-time reporting", desc: "Track points, redemptions and customer activity" },
-          ].map((item) => (
+            { icon: <FaStore className="text-indigo-300 text-lg" />, title: "Single or multi-branch", desc: "Works for one shop or a full franchise network" },
+            { icon: <FaBolt className="text-yellow-300 text-lg" />, title: "Live in 24 hours", desc: "We set up your account and send you credentials" },
+            { icon: <FaChartBar className="text-green-300 text-lg" />, title: "Real-time reporting", desc: "Track points, redemptions and customer activity" },
+            ].map((item) => (
             <div key={item.title} className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-xl shrink-0">
+                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
                 {item.icon}
-              </div>
-              <div>
+                </div>
+                <div>
                 <p className="font-semibold text-white">{item.title}</p>
                 <p className="text-indigo-200 text-sm">{item.desc}</p>
-              </div>
+                </div>
             </div>
-          ))}
+            ))}
         </div>
       </div>
 
@@ -111,7 +112,7 @@ export default function RequestDemoPage() {
                 onChange={handleChange}
                 required
                 placeholder="e.g. Harry Supermarkets"
-                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50"
+                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-gray-900 placeholder-gray-400"
               />
             </div>
 
@@ -123,7 +124,7 @@ export default function RequestDemoPage() {
                 onChange={handleChange}
                 required
                 placeholder="Full name"
-                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50"
+                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-gray-900 placeholder-gray-400"
               />
             </div>
 
@@ -136,7 +137,7 @@ export default function RequestDemoPage() {
                   onChange={handleChange}
                   required
                   placeholder="+263 77 000 0000"
-                  className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50"
+                  className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-gray-900 placeholder-gray-400"
                 />
               </div>
               <div>
@@ -146,7 +147,7 @@ export default function RequestDemoPage() {
                   value={form.branches}
                   onChange={handleChange}
                   required
-                  className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50"
+                  className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-gray-900 placeholder-gray-400"
                 >
                   <option value="">Select...</option>
                   <option value="1">1 branch</option>
@@ -166,7 +167,7 @@ export default function RequestDemoPage() {
                 onChange={handleChange}
                 required
                 placeholder="you@business.com"
-                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50"
+                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-gray-900 placeholder-gray-400"
               />
             </div>
 
