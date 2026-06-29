@@ -1,10 +1,20 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FaStore, FaBolt, FaChartBar } from "react-icons/fa";
 
-export default function RequestDemoPage() {
+const PLAN_LABELS: Record<string, string> = {
+  single_branch: "Single Branch",
+  multi_branch: "Multi-Branch",
+  enterprise: "Enterprise",
+};
+
+function RequestDemoForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const planParam = searchParams.get("plan");
+  const planLabel = planParam ? PLAN_LABELS[planParam] ?? planParam : null;
+
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
@@ -13,6 +23,7 @@ export default function RequestDemoPage() {
     phone: "",
     branches: "",
     email: "",
+    plan: planParam || "",
   });
 
   useEffect(() => {
@@ -54,7 +65,9 @@ export default function RequestDemoPage() {
           </div>
           <h1 className="text-3xl font-bold text-white mb-3">We&apos;ll be in touch!</h1>
           <p className="text-indigo-200">
-            Thanks for your interest in Zimora Loyalty. We&apos;ll contact you within 24 hours to get your account set up.
+            {planLabel
+              ? `Thanks for your interest in the ${planLabel} plan. We'll contact you within 24 hours with payment details and to get your account set up.`
+              : "Thanks for your interest in Zimora Loyalty. We'll contact you within 24 hours to get your account set up."}
           </p>
         </div>
       </div>
@@ -63,7 +76,7 @@ export default function RequestDemoPage() {
 
   return (
     <div className="min-h-screen flex" style={{ background: "linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%)" }}>
-      
+
       {/* Left panel */}
       <div className="hidden lg:flex lg:w-1/2 flex-col justify-center px-16 text-white">
         <div className="flex items-center gap-3 mb-12">
@@ -80,10 +93,12 @@ export default function RequestDemoPage() {
         </div>
 
         <h1 className="text-4xl font-bold mb-4 leading-tight">
-          Start rewarding your customers today
+          {planLabel ? `Get started with ${planLabel}` : "Start rewarding your customers today"}
         </h1>
         <p className="text-indigo-200 text-lg mb-10">
-          Join businesses across Zimbabwe using Zimora to build lasting customer loyalty.
+          {planLabel
+            ? "Leave your details and we'll be in touch to set up payment and activate your account."
+            : "Join businesses across Zimbabwe using Zimora to build lasting customer loyalty."}
         </p>
 
         <div className="flex flex-col gap-5">
@@ -91,30 +106,42 @@ export default function RequestDemoPage() {
             { icon: <FaStore className="text-indigo-300 text-lg" />, title: "Single or multi-branch", desc: "Works for one shop or a full franchise network" },
             { icon: <FaBolt className="text-yellow-300 text-lg" />, title: "Live in 24 hours", desc: "We set up your account and send you credentials" },
             { icon: <FaChartBar className="text-green-300 text-lg" />, title: "Real-time reporting", desc: "Track points, redemptions and customer activity" },
-            ].map((item) => (
+          ].map((item) => (
             <div key={item.title} className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
                 {item.icon}
-                </div>
-                <div>
+              </div>
+              <div>
                 <p className="font-semibold text-white">{item.title}</p>
                 <p className="text-indigo-200 text-sm">{item.desc}</p>
-                </div>
+              </div>
             </div>
-            ))}
+          ))}
         </div>
       </div>
 
       {/* Right panel - form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8">
-          
+
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-1">Request Access</h2>
-            <p className="text-gray-500 text-sm">We&apos;ll set up your account within 24 hours.</p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-1">
+              {planLabel ? `Request Access — ${planLabel}` : "Request Access"}
+            </h2>
+            <p className="text-gray-500 text-sm">
+              {planLabel
+                ? "We'll contact you with payment details and set up your account within 24 hours."
+                : "We'll set up your account within 24 hours."}
+            </p>
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            {planLabel && (
+              <div className="rounded-lg bg-indigo-50 px-4 py-3 text-sm text-indigo-700 font-medium">
+                Selected plan: {planLabel}
+              </div>
+            )}
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Business Name</label>
               <input
@@ -187,7 +214,7 @@ export default function RequestDemoPage() {
               disabled={loading}
               className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition disabled:opacity-50 mt-2"
             >
-              {loading ? "Sending..." : "Request Access →"}
+              {loading ? "Sending..." : planLabel ? "Request This Plan →" : "Request Access →"}
             </button>
 
             <p className="text-center text-xs text-gray-400">
@@ -198,5 +225,13 @@ export default function RequestDemoPage() {
       </div>
 
     </div>
+  );
+}
+
+export default function RequestDemoPage() {
+  return (
+    <Suspense fallback={null}>
+      <RequestDemoForm />
+    </Suspense>
   );
 }
