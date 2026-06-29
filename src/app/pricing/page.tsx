@@ -18,11 +18,11 @@ const features = [
 ];
 
 const TIERS = [
-  { key: "shops_1", label: "1 SHOP", shops: 1, price: 20, unlocked: 3, freeTrial: true },
-  { key: "shops_2", label: "2 SHOPS", shops: 2, price: 35, unlocked: 4, freeTrial: false },
-  { key: "shops_3", label: "3 SHOPS", shops: 3, price: 48, unlocked: 6, freeTrial: false, popular: true },
-  { key: "shops_4", label: "4 SHOPS", shops: 4, price: 60, unlocked: 8, freeTrial: false },
-  { key: "shops_5", label: "5 SHOPS", shops: 5, price: 70, unlocked: 9, freeTrial: false },
+  { key: "shops_1", label: "1 SHOP", shops: 1, price: 40, unlocked: 3, freeTrial: true },
+  { key: "shops_2", label: "2 SHOPS", shops: 2, price: 70, unlocked: 4, freeTrial: false },
+  { key: "shops_3", label: "3 SHOPS", shops: 3, price: 96, unlocked: 6, freeTrial: false, popular: true },
+  { key: "shops_4", label: "4 SHOPS", shops: 4, price: 120, unlocked: 8, freeTrial: false },
+  { key: "shops_5", label: "5 SHOPS", shops: 5, price: 140, unlocked: 9, freeTrial: false },
 ];
 
 export default function Pricing() {
