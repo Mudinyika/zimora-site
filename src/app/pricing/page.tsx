@@ -5,8 +5,8 @@ import { FaCheck, FaTimes } from "react-icons/fa";
 import { GiCutDiamond } from "react-icons/gi";
 
 const features = [
-  "Multi-Shop Support",
   "Advanced Points Allocation",
+  "Multi-Shop Support",
   "Customizable Offers & Campaigns",
   "Full Analytics & Insights",
   "Priority Support",
@@ -18,7 +18,7 @@ const features = [
 ];
 
 const TIERS = [
-  { key: "shops_1", label: "1 SHOP", shops: 1, price: 40, unlocked: 2, freeTrial: true },
+  { key: "shops_1", label: "1 SHOP", shops: 1, price: 40, unlocked: 1, freeTrial: true },
   { key: "shops_2", label: "2 SHOPS", shops: 2, price: 70, unlocked: 4, freeTrial: false },
   { key: "shops_3", label: "3 SHOPS", shops: 3, price: 96, unlocked: 6, freeTrial: false, popular: true },
   { key: "shops_4", label: "4 SHOPS", shops: 4, price: 120, unlocked: 8, freeTrial: false },
